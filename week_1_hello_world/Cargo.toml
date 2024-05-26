@@ -1,0 +1,6 @@
+[package]
+name = "Week_1_-_Hello_World"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
