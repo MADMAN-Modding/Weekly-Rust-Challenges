@@ -1,5 +1,5 @@
 [package]
-name = "week_1_hello_world"
+name = "week_5_word_counter"
 version = "0.1.0"
 edition = "2021"
 
