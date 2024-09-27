@@ -1,4 +1,4 @@
-use std::{fs::File, io::{self, stdin, Read}};
+use std::{fs::File, io::{self, Read}};
 
 fn main() {
     let mut input:String = String::new();
