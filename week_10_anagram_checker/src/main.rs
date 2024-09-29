@@ -7,7 +7,6 @@ fn main() {
     let mut word_character_count:HashMap<char, i16> = HashMap::new();
     let mut anagram_character_count:HashMap<char, i16> = HashMap::new();
 
-
     println!("Input a word");
 
     io::stdin()
@@ -20,33 +19,30 @@ fn main() {
         .read_line(&mut anagram)
         .expect("unable to read string");
 
-    // Trim the strings and convert them to lowercase
-    word = word.trim().to_string().to_lowercase();
-    anagram = anagram.trim().to_string().to_lowercase();
-
-
     // Used for outputting the anagram and word at the end
-    let original_anagram:String = anagram.to_string();
-    let original_word:String = word.to_string();
+    let original_word:String = word.trim().to_owned();
+    let original_anagram:String = anagram.trim().to_owned();
+
+    // Trim the strings and convert them to lowercaseString 
+    word = word.trim().to_lowercase();
+    anagram = anagram.trim().to_lowercase();
 
     // Makes a map of all the characters in the word
     for character in word.chars() {
-        let default_value:i16 = 0;
-        let key_value = word_character_count.get(&character).get_or_insert(&default_value).to_owned();
+        let key_value:i16 = word_character_count.get(&character).get_or_insert(&0).to_owned();
         
         word_character_count.insert(character, key_value + 1);
     }
 
     // Makes a map of all the characters in the anagram
     for character in anagram.chars() {
-        let default_value:i16 = 0;
-        let key_value:i16 = anagram_character_count.get(&character).get_or_insert(&default_value).to_owned();
+        let key_value:i16 = anagram_character_count.get(&character).get_or_insert(&0).to_owned();
 
         anagram_character_count.insert(character, key_value + 1);
     }
 
     // Prints whether or the word is an anagram
-    println!("{}", if check_anagram(word_character_count, anagram_character_count) {format!("{} is an anagram of {}", original_word, original_anagram)} else {format!("{} not an anagram of {}", original_word, original_anagram)});
+    println!("{}", if check_anagram(word_character_count, anagram_character_count) {format!("{original_anagram} is an anagram of {original_word}")} else {format!("{original_anagram} is not an anagram of {original_word}")});
 }
 
 /* For every key (k) in the word_map, check if the value is equal to that of the anagram map
